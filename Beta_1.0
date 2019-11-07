@@ -1,4 +1,4 @@
-  
+
 #include <iostream>
 #include <windows.h>
 #include <stdio.h>
@@ -49,21 +49,22 @@ int main()
     {
     system("cls");
     if(hajs<0){cout<<"Psy cie zlapaly straciles hajs"<<endl;hajs=0;Sleep(1200);system("cls");}
-    cout << "_____GANGSYMULATOR_____                godzina: " <<godzina<<" dzien: "<<dzien<< endl;
-    cout << "Hajs       = " <<hajs<< endl;
-    cout << "Czlonkowie = " <<team<< endl;
-    cout << "Miejsca    = " <<miejsca<< endl;
-    cout << "[1]Pracuj" << endl;
-    cout << "[2]Ulepsz Siedzibe Gangu"<<" |Koszt:"<<ku<< endl;
-    cout << "[3]Zwerbuj Ziomka        |koszt:" <<kw<< endl;
-    cout << "[4]Awansuj               |koszt:" <<ka<< endl;
-    cout << "[5]Zrob napad     |koszt przygotowan:"<<kn<<" |Zarobki: czlonek-"<<zn<<endl;
-    if(masz_hodowle==false) cout << "[6]Kup Hodowle ziola     |koszt: "<<KhodowliZiola<<endl;
-    if(masz_hodowle==true) cout << "[6]Hodowla Ziola"<<endl;
-    cout<<"[7]Udaj sie w balety"<<endl;
-    cout << "[s]Save"<<endl;
-    cout << "[w]Wczytaj"<<endl;
-    cout << "[0]quit" << endl;
+    cout << "X____GANGSYMULATOR_____________________________godzina: " <<godzina<<" dzien: "<<dzien<<"_______X"<< endl;
+    cout << "|Hajs       = " <<hajs<<endl;
+    cout << "|Czlonkowie = " <<team<<endl;
+    cout << "|Miejsca    = " <<miejsca<< endl;
+    cout << "|[1]Pracuj" << endl;
+    cout << "|[2]Ulepsz Siedzibe Gangu"<<" |Koszt:"<<ku<<endl;
+    cout << "|[3]Zwerbuj Ziomka        |koszt:" <<kw<< endl;
+    cout << "|[4]Awansuj               |koszt:" <<ka<<endl;
+    cout << "|[5]Zrob napad     |koszt przygotowan:"<<kn<<" |Zarobki: czlonek-"<<zn<<endl;
+    if(masz_hodowle==false) cout << "|[6]Kup Hodowle ziola     |koszt: "<<KhodowliZiola<<endl;
+    if(masz_hodowle==true) cout << "|[6]Hodowla Ziola"<<endl;
+    cout<<"|[7]Udaj sie w balety"<<endl;
+    cout << "|[s]Save"<<endl;
+    cout << "|[w]Wczytaj"<<endl;
+    cout << "|[0]quit" <<endl;
+    cout<<"X________________________________________________________________________X"<<endl;
     wybor=getch();
     system("cls");
     switch(wybor)
@@ -181,7 +182,7 @@ int main()
         while(hodowla==true)
         {
         system("cls");
-        cout << "_______HODOWLA________                godzina: " <<godzina<<" dzien: "<<dzien<< endl;
+        cout << "X_______HODOWLA________X                godzina: " <<godzina<<" dzien: "<<dzien<< endl;
         if(rosne==false) cout<<"hajs: "<<hajs<<endl;
         if(rosne==false) cout<<"sadzonki: "<<sadzonki<<endl;
         if(rosne==false) cout<<"[1]kup sadzonki: "<<koszt_sadzonek<<endl;
@@ -189,6 +190,7 @@ int main()
         if(rosne==true)if(dzien<dzien_zasadzenia_ziola+10) cout<<"Zostalo dni: "<<(dzien_zasadzenia_ziola+10)-dzien<<endl;
         if(rosne==true)if(dzien>=dzien_zasadzenia_ziola+10) cout<<"[3]zbierz ziolo"<<endl;
                          cout<<"[5]wyjdz"<<endl;
+                         cout<<"X______________________X"<<endl;
         wybor=getch();
 
         switch(wybor)
@@ -230,15 +232,25 @@ int main()
         for(i = 0; i<13; i++)
         {
         system("cls");
+        cout<<"XXXXXXXXXXXXXXXXXXXX"<<endl;
         cout << "Meelanz trewa: " <<i<<"h" <<endl;
+        cout<<"XXXXXXXXXXXXXXXXXXXX"<<endl;
         Sleep(100);
         }
     srand(time(NULL));
     los=rand()%5+1;
-    if(los==1)if(miejsca>team)team=team+1;
+    if(los==1)if(miejsca>team){
+            team=team+1;
+            cout<<"Poznales ziomka dobra morde !!"
+            Sleep(600);
+    }
     srand(time(NULL));
     los=rand()%5+1;
-    if(los2==1)if(rosne==false)sadzonki=sadzonki+1;
+    if(los2==1)if(rosne==false){
+            sadzonki=sadzonki+1;
+            cout<<"Znalazles sadzonke !!!"<<endl;
+            Sleep(600);
+    }
     srand(time(NULL));
     hajs_za_melo = rand()%100+1;
     hajs = hajs-hajs_za_melo;
