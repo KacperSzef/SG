@@ -1,0 +1,328 @@
+  
+#include <iostream>
+#include <windows.h>
+#include <stdio.h>
+#include <cstdlib>
+#include <conio.h>
+#include <fstream>
+#include <time.h>
+
+using namespace std;
+
+int hajs,team,k,i,hph,miejsca,ku,kw,ka,kn=12,zn=10,KhodowliZiola=100;
+bool koniec,masz_hodowle=false;
+char wybor;
+int godzina=1,dzien=1,hajs_za_melo,los,los2,los3;
+
+int sadzonki=1,koszt_sadzonek=50,dzien_zasadzenia_ziola,zarobki_z_ziola=500; bool rosne=false, hodowla=true;//Hodowla
+
+int czas(int ilegodzin)
+{
+    int czas=godzina;
+    for(int i=1; i<=ilegodzin; i++)
+    {
+        czas++;
+        if(czas==25)
+        {
+        czas=1;
+        dzien++;
+        }
+
+    }
+
+
+    return czas;
+}
+
+int main()
+{
+    hajs=150;
+    koniec = false;
+    k = 5;
+    hph = 1;
+    miejsca = 0;
+    ku = 10;
+    kw = 10;
+    ka = 10;
+    team = 0;
+    while (koniec==false)
+    {
+    system("cls");
+    if(hajs<0){cout<<"Psy cie zlapaly straciles hajs"<<endl;hajs=0;Sleep(1200);system("cls");}
+    cout << "_____GANGSYMULATOR_____                godzina: " <<godzina<<" dzien: "<<dzien<< endl;
+    cout << "Hajs       = " <<hajs<< endl;
+    cout << "Czlonkowie = " <<team<< endl;
+    cout << "Miejsca    = " <<miejsca<< endl;
+    cout << "[1]Pracuj" << endl;
+    cout << "[2]Ulepsz Siedzibe Gangu"<<" |Koszt:"<<ku<< endl;
+    cout << "[3]Zwerbuj Ziomka        |koszt:" <<kw<< endl;
+    cout << "[4]Awansuj               |koszt:" <<ka<< endl;
+    cout << "[5]Zrob napad     |koszt przygotowan:"<<kn<<" |Zarobki: czlonek-"<<zn<<endl;
+    if(masz_hodowle==false) cout << "[6]Kup Hodowle ziola     |koszt: "<<KhodowliZiola<<endl;
+    if(masz_hodowle==true) cout << "[6]Hodowla Ziola"<<endl;
+    cout<<"[7]Udaj sie w balety"<<endl;
+    cout << "[s]Save"<<endl;
+    cout << "[w]Wczytaj"<<endl;
+    cout << "[0]quit" << endl;
+    wybor=getch();
+    system("cls");
+    switch(wybor)
+    {
+    case '0':
+     godzina=czas(24);
+     hajs=hajs-100;
+    break;
+    case '1':             //______________________pracowanie_________________
+        for(i = 0; i<5; i++)
+        {
+        system("cls");
+        cout << "Pracuje: " <<i<<"h" <<endl;
+        Sleep(300);
+        }
+    hajs = hajs + hph*4;
+    godzina=czas(4);
+    break;
+
+    case '2':
+        godzina=czas(1);            //_______________Ulepszanie siedziby____________
+        if(hajs>=ku)
+        {
+            cout << "Siedziba Ulepszona!" << endl;
+            miejsca++;
+            hajs = hajs-ku;
+            ku = ku*2;
+            Sleep(500);
+        }
+        else
+        {
+            cout << "Nie Sta� cie na ulepszenie" << endl;
+            Sleep(700);
+        }
+    break;
+    case '3':
+        godzina=czas(1);        //_________________Nowy czlonek________________
+        if(miejsca>team)
+        {
+           if(hajs>=kw)
+           {
+               cout << "Nowy czlonek w Gangu!" << endl;
+               hajs = hajs-kw;
+               team++;
+               kw = kw*2;
+               Sleep(500);
+           }
+           else
+           {
+               cout << "Nie stac cie" << endl;
+               Sleep(500);
+           }
+        }
+        else
+        {
+            cout << "Miejsca nie ma" << endl;
+            Sleep(500);
+        }
+    break;
+    case '4':
+        godzina=czas(1);         //__________________Awans__________________
+        if(hajs>=ka)
+        {
+            cout << "przekupiles pracodawce!" << endl;
+            hajs = hajs-ka;
+            hph = hph*2;
+            ka = ka*3;
+            Sleep(500);
+        }
+        else
+        {
+            cout << "Nie stac cie" << endl;
+            Sleep(500);
+        }
+    break;
+    case '5':    //_________Napad___________
+        if(hajs>=kn)
+        {
+        hajs = hajs-kn;
+        for(i = 0; i<10; i++)
+        {
+        system("cls");
+        cout << "Napad trwa: " <<i<<"h" <<endl;
+        Sleep(300);
+        }
+        system("cls");
+        cout << "Napad udany !"<<endl;
+        hajs = hajs + team*zn;
+        zn = zn*2;
+        kn = kn*2;
+        godzina=czas(9);
+        Sleep(600);
+        }
+    break;
+    case '6':
+        godzina=czas(1);
+        hodowla=true;
+        if(masz_hodowle==false)
+        {
+            if(KhodowliZiola<=hajs)
+            {
+            cout<<"kupiles hodowle ziola"<<endl;
+            hajs=hajs-KhodowliZiola;
+            masz_hodowle=true;
+            Sleep(700);
+            }
+            else
+            {
+            cout<<"za malo hajsu"<<endl;
+            }
+            system("cls");
+        }
+        if(masz_hodowle==true)
+        {
+        while(hodowla==true)
+        {
+        system("cls");
+        cout << "_______HODOWLA________                godzina: " <<godzina<<" dzien: "<<dzien<< endl;
+        if(rosne==false) cout<<"hajs: "<<hajs<<endl;
+        if(rosne==false) cout<<"sadzonki: "<<sadzonki<<endl;
+        if(rosne==false) cout<<"[1]kup sadzonki: "<<koszt_sadzonek<<endl;
+        if(rosne==false) cout<<"[2]zasadz"<<endl;
+        if(rosne==true)if(dzien<dzien_zasadzenia_ziola+10) cout<<"Zostalo dni: "<<(dzien_zasadzenia_ziola+10)-dzien<<endl;
+        if(rosne==true)if(dzien>=dzien_zasadzenia_ziola+10) cout<<"[3]zbierz ziolo"<<endl;
+                         cout<<"[5]wyjdz"<<endl;
+        wybor=getch();
+
+        switch(wybor)
+        {
+        case '5':
+            hodowla=false;
+        break;
+        case '1':
+        if(rosne==false)if(koszt_sadzonek<=hajs)
+            {
+                hajs=hajs-koszt_sadzonek;
+                sadzonki++;
+            }
+        break;
+        case '2':
+            if(rosne==false){
+            system("cls");
+            cout <<"posadzono sadzonek: " << sadzonki<<endl;
+            rosne=true;
+            dzien_zasadzenia_ziola=dzien;
+            Sleep(900);
+            }
+        break;
+        case '3':
+            if(rosne==true)if(dzien>=dzien_zasadzenia_ziola+10){
+                system("cls");
+                hajs=hajs+sadzonki*zarobki_z_ziola;
+                sadzonki=0;
+                rosne=false;
+                cout<<"sprzedasz udana!"<<endl;
+                Sleep(600);
+            }
+        break;
+        }
+        }
+    }
+    case '/': system("cls"); break;
+    case '7':
+        for(i = 0; i<13; i++)
+        {
+        system("cls");
+        cout << "Meelanz trewa: " <<i<<"h" <<endl;
+        Sleep(100);
+        }
+    srand(time(NULL));
+    los=rand()%5+1;
+    if(los==1)if(miejsca>team)team=team+1;
+    srand(time(NULL));
+    los=rand()%5+1;
+    if(los2==1)if(rosne==false)sadzonki=sadzonki+1;
+    srand(time(NULL));
+    hajs_za_melo = rand()%100+1;
+    hajs = hajs-hajs_za_melo;
+    godzina=czas(12);
+    break;
+    case 's':                            //___________________________ZAPISYWANIE_________________________
+        cout<<"[1]Zapis"<<endl;
+        cout<<"[5]Wroc"<<endl;
+        wybor=getch();
+        switch(wybor){
+        case '5':
+        break;
+        case '1':
+            system("cls");
+            fstream plik;
+            plik.open("zapis1.txt", ios::out);
+            plik<<hajs<<endl;
+            plik<<team<<endl;
+            plik<<hph<<endl;
+            plik<<miejsca<<endl;
+            plik<<ku<<endl;
+            plik<<kw<<endl;
+            plik<<ka<<endl;
+            plik<<kn<<endl;
+            plik<<zn<<endl;
+            plik<<masz_hodowle<<endl;
+            plik<<godzina<<endl;
+            plik<<dzien<<endl;
+            plik<<sadzonki<<endl;
+            plik<<dzien_zasadzenia_ziola<<endl;
+            plik<<rosne<<endl;
+            plik.close();
+            cout<<"zapisano!!!"<<endl;
+            Sleep(800);
+        break;
+        }
+    break;
+    case 'w':
+        cout<<"[1]Wczytaj"<<endl;
+        cout<<"[5]Wroc"<<endl;
+        wybor=getch();
+        switch(wybor){
+        case '5': break;
+        case '1':
+            fstream plik;
+            plik.open("zapis1.txt", ios::in);
+            if(plik.good()==false)
+            {
+                cout<<"plik nie istnieje"<<endl;
+                exit(0);
+            }
+            string linia;
+            int nr_lini=1;
+
+            while(getline(plik,linia))
+            {
+                switch(nr_lini)
+                {
+                case 1: hajs=atoi(linia.c_str()); break;
+                case 2: team=atoi(linia.c_str()); break;
+                case 3: hph=atoi(linia.c_str()); break;
+                case 4: miejsca=atoi(linia.c_str()); break;
+                case 5: ku=atoi(linia.c_str()); break;
+                case 6: kw=atoi(linia.c_str()); break;
+                case 7: ka=atoi(linia.c_str()); break;
+                case 8: kn=atoi(linia.c_str()); break;
+                case 9: zn=atoi(linia.c_str()); break;
+                case 10: masz_hodowle=atoi(linia.c_str()); break;
+                case 11: godzina=atoi(linia.c_str()); break;
+                case 12: dzien=atoi(linia.c_str()); break;
+                case 13: sadzonki=atoi(linia.c_str()); break;
+                case 14: dzien_zasadzenia_ziola=atoi(linia.c_str()); break;
+                case 15: rosne=atoi(linia.c_str()); break;
+                }
+                nr_lini++;
+            }
+            plik.close();
+            system("cls");
+            cout<<"Wczytano Gre!!!"<<endl;
+            Sleep(800);
+        break;
+        }
+    break;
+    }
+    }
+    return 0;
+}
