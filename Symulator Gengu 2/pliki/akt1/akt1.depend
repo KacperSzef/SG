@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1586014172 source:c:\users\user\desktop\symulator gengu 2\pliki\akt1\walka.cpp
+	<iostream>
+	<conio.h>
+	<windows.h>
+	<time.h>
+
+1586435857 source:c:\users\user\desktop\symulator gengu 2\pliki\akt1\main.cpp
+	<iostream>
+	<conio.h>
+	<windows.h>
+	<time.h>
+	"walka.h"
+
+1586204498 c:\users\user\desktop\symulator gengu 2\pliki\akt1\walka.h
+	<iostream>
+	<conio.h>
+	<windows.h>
+	<time.h>
+
